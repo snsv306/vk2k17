@@ -14,7 +14,6 @@ public class DeleteStopWords {
         for (String i: stopWords) {
             str = str.replaceAll(i, "");
         }
-        System.out.println(str);
         return str;
     }
 }
