@@ -24,7 +24,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -48,9 +51,15 @@ public class Main {
     SpringApplication.run(Main.class, args);
   }
 
-  @RequestMapping("/")
-  String index() {
+  @RequestMapping(value = "/", method = RequestMethod.GET)
+  String index(@RequestParam("name") String param, Model model) {
     return "index";
+  }
+
+  @RequestMapping(value = "/my*", method = RequestMethod.GET)
+  public String myServlet(@RequestParam("name") String param, Model model) {
+    model.addAttribute("name", param);
+    return "mine";
   }
 
   @RequestMapping("/db")
