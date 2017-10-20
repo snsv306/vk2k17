@@ -42,7 +42,7 @@ public class Main {
   private String dbUrl;
 
   @Autowired
-  private DataSource dataSource;
+  private DataSource dataSource1;
 
   public static void main(String[] args) throws Exception {
     SpringApplication.run(Main.class, args);
@@ -55,7 +55,7 @@ public class Main {
 
   @RequestMapping("/db")
   String db(Map<String, Object> model) {
-    try (Connection connection = dataSource.getConnection()) {
+    try (Connection connection = dataSource1.getConnection()) {
       Statement stmt = connection.createStatement();
       stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)");
       stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
