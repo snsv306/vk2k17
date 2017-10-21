@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class DeleteStopWords {
     public static String[] stopWords = {"это", "как", "так", "и", "в", "над", "к", "до", "не", "на", "но",
             "за", "то", "с", "ли", "а", "во", "от", "со", "для", "о", "же",
-            "ну", "вы", "бы", "что", "кто", "он", "она", "об"};
+            "ну", "вы", "бы", "что", "кто", "он", "она", "об", "по"};
 
 
     public String deleteStopWords (String str){

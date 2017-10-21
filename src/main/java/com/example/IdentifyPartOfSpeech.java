@@ -3,6 +3,24 @@ package com.example;
 
 public class IdentifyPartOfSpeech {
 
+    public static String[] adject = {"ее", "ие", "ые", "ое", "ими", "ыми", "ей", "ий", "ый", "ой", "ем", "им", "ым",
+            "ом", "его", "ого", "ему", "ому", "их", "ых", "ую", "юю", "ая", "яя", "ою", "ею"};
+
+    public String deleteAdjective(String str){
+        String res = "";
+        Boolean flag;
+
+        for (String i: str.split(" ")){
+            flag = false;
+            for (String j: adject){
+                if((i.endsWith(j))) flag = true;
+            }
+            if (!flag) res += i + " ";
+        }
+
+        return res;
+    }
+    /*
     //1 - прилагательное
     //2 - причастие
     //3 - глагол
@@ -25,77 +43,5 @@ public class IdentifyPartOfSpeech {
                                     "льно", "здо", "зко", "шо", "хо", "но"};
     public static String[] chisl = {"чуть", "много", "мало", "еро", "вое", "рое", "еро", "сти", "одной", "двух", "рех",
                                     "еми", "яти", "ьми", "ати", "дного", "сто", "ста", "тысяча", "тысячи", "две",
-                                    "три", "одна", "умя", "тью", "мя", "тью", "мью", "тью", "одним"};
-
-    public String identifyPartOfSpeech(String str){
-
-        String res = "";
-        str = str.toLowerCase();
-        boolean flag;
-
-        for (String i: str.split(" ")){
-
-            flag = false;
-            //1 - прилагательное
-            for (String j: prilag){
-                if (i.endsWith(j)) {
-                    res += "прил ";
-                    flag = true;
-                    break;
-                }
-            }
-
-            if (flag) continue;
-            //2 - причастие
-            for (String j: prichstie){
-                if (i.endsWith(j)) {
-                    res += "прич ";
-                    flag = true;
-                    break;
-                }
-            }
-
-            if (flag) continue;
-            //3 - глагол
-            for (String j: glagol){
-                if (i.endsWith(j)) {
-                    res += "глаг ";
-                    flag = true;
-                    break;
-                }
-            }
-
-            if (flag) continue;
-            //4 - существительное
-            for (String j: susctestv){
-                if (i.endsWith(j)) {
-                    res += "сущ ";
-                    flag = true;
-                    break;
-                }
-            }
-
-            if (flag) continue;
-            //5 - наречие
-            for (String j: narech){
-                if (i.endsWith(j)) {
-                    res += "нареч ";
-                    flag = true;
-                    break;
-                }
-            }
-
-            if (flag) continue;
-            //6 - числительное
-            for (String j: chisl){
-                if (i.endsWith(j)) {
-                    res += "числ ";
-                    flag = true;
-                    break;
-                }
-            }
-        }
-
-        return res;
-    }
+                                    "три", "одна", "умя", "тью", "мя", "тью", "мью", "тью", "одним"};*/
 }
