@@ -12,7 +12,7 @@ public class DeleteStopWords {
 
         str = str.toLowerCase();
 
-        str = str.replaceAll("[^a-zA-Zа-яА-Я^ ]", "");
+        str = str.replaceAll("[^1-9a-zA-Zа-яА-Я^ ]", "");
         String res = "";
 
         for(String i: str.split(" ")){
