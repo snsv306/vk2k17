@@ -28,6 +28,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -52,14 +55,15 @@ public class Main {
   }
 
   @RequestMapping(value = "/", method = RequestMethod.GET)
-  String index(@RequestParam("name") String param, Model model) {
+  String index() {
     return "index";
   }
 
-  @RequestMapping(value = "/my*", method = RequestMethod.GET)
-  public String myServlet(@RequestParam("name") String param, Model model) {
-    model.addAttribute("name", param);
-    return "mine";
+  @RequestMapping(value = "/get", method = RequestMethod.GET)
+  public String myServlet(@RequestParam("link") String link, @RequestParam("text") String text, Model model) {
+    model.addAttribute("link", link);
+    model.addAttribute("text", text);
+    return "getReceived";
   }
 
   @RequestMapping("/db")
