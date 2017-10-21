@@ -1,11 +1,7 @@
 package factchecking.news.getter;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.nio.charset.UnsupportedCharsetException;
 import java.util.ArrayList;
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -24,16 +20,11 @@ public class YaGetter implements IGetter {
     }  
 
     private void work() {
-        String url = "";
         try {
-            //step 1
-            url = findStory(makeFindStoryUrl(queryText));
-            System.out.println("phase 1 : " + url + "\n");
-            //step 2
+            String url = makeFindStoryUrl(this.queryText);
+            url = findStory(url);
             url = findSources(url);
-            System.out.println("phase 2 : " + url + "\n");
             this.result = findTexts(url);
-            System.out.println("phase 3 : " + this.result.get(0) + "\n");
         } catch (Exception err) {
             err.printStackTrace();
         }
@@ -60,13 +51,13 @@ public class YaGetter implements IGetter {
         Element link = doc.select(".story__total").first();
         return link.attr("abs:href");
     }
-
+    //phase 3 вырезаем текст из страницы
     private ArrayList<String> findTexts(final String url) throws Exception {
         Document doc = HttpHelper.getDocumentByUrl(url);
         Elements elems = doc.select(".doc__text");
         ArrayList<String> texts = new ArrayList<String>();
-        for (int i = 0; i < elems.size(); i++) {
-            texts.add(elems.get(i).text());
+        for (Element elem : elems) {
+            texts.add(elem.text());
         }
         return texts;
     }
