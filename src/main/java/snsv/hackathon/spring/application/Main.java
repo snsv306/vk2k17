@@ -17,7 +17,7 @@ public class Main {
     SpringApplication.run(Main.class, args);
   }
 
-  @RequestMapping(value = "/get", method = RequestMethod.GET)
+  @RequestMapping(value = "/", method = RequestMethod.GET)
   @ResponseBody
   public UIResponse myServlet(@RequestParam("link") String link, @RequestParam("text") String text) {
     return new UIResponse(link, text);
