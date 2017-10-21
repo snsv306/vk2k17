@@ -3,6 +3,7 @@ package test.factchecking;
 import factchecking.FactChecking;
 import factchecking.news.YaNews;
 
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
