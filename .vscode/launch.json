@@ -12,7 +12,7 @@
             "type": "java",
             "name": "Launch Test",
             "request": "launch",
-            "mainClass": "test.factchecking.Test",
+            "mainClass": "test.snsv.hackathon.factchecking.Test",
             "args": ""
         }
     ]

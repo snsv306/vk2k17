@@ -1,10 +1,9 @@
-package com.example;
+package FormatString;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Stemmer {
-
     private static final Pattern PERFECTIVEGROUND = Pattern.compile("((ив|ивши|ившись|ыв|ывши|ывшись)|((в|вши|вшись)))$");
 
     private static final Pattern REFLEXIVE = Pattern.compile("(с[яь])$");
@@ -75,5 +74,4 @@ public class Stemmer {
 
         return word;
     }
-
 }

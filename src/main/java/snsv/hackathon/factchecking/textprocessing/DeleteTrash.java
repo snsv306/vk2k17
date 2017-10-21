@@ -1,18 +1,18 @@
-package com.example;
+package FormatString;
 
 import java.util.Arrays;
 
-public class DeleteStopWords {
+public class DeleteTrash {
     public static String[] stopWords = {"это", "как", "так", "и", "в", "над", "к", "до", "не", "на", "но",
-                                        "за", "то", "с", "ли", "а", "во", "от", "со", "для", "о", "же",
-                                        "ну", "вы", "бы", "что", "кто", "он", "она", "об"};
+            "за", "то", "с", "ли", "а", "во", "от", "со", "для", "о", "же", "ни", "они", "оно",
+            "ну", "вы", "бы", "что", "кто", "он", "она", "об", "по"};
 
 
-    public String deleteStopWords (String str){
+    public String deleteTrash(String str){
 
         str = str.toLowerCase();
 
-        str = str.replaceAll("[^a-zA-Zа-яА-Я^ ]", "");
+        str = str.replaceAll("[^0-9a-zA-Zа-яА-Я^ ]", "");
         String res = "";
 
         for(String i: str.split(" ")){

@@ -1,13 +1,14 @@
-package factchecking.news.aggregator;
+package snsv.hackathon.factchecking.news.aggregator;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import factchecking.news.HttpHelper;
+import snsv.hackathon.factchecking.news.HttpHelper;
 
 /**
  * YaAggregator
@@ -25,8 +26,8 @@ public class YaAggregator implements IAggregator {
         this.query = query;
     }
 
-    public ArrayList<String> getLinks() {
-        ArrayList<String> result = new ArrayList<String>();
+    public List<String> getLinks() {
+        List<String> result = new ArrayList<String>();
         try {
             String url = makeFindStoryUrl(this.query);
             url = findStory(url);
@@ -60,10 +61,10 @@ public class YaAggregator implements IAggregator {
     }
 
     //phase 3 поиск ссылок на другие новостные ресурсы
-    private ArrayList<String> findLinks(final String url) throws Exception {
+    private List<String> findLinks(final String url) throws Exception {
         Document doc = HttpHelper.getDocumentByUrl(url);
         Elements elems = doc.select("h2.doc__title a");
-        ArrayList<String> links = new ArrayList<String>();
+        List<String> links = new ArrayList<String>();
         for (Element elem : elems) {
             links.add(elem.attr("abs:href"));
         }
