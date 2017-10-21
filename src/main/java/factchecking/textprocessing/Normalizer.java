@@ -24,7 +24,7 @@ public class Normalizer {
         String res = "";
         str = new DeleteTrash().deleteTrash(str);
         for (String i : str.split(" ")) {
-            res += new Stemmer().stemming(i);
+            res += new Stemmer().stemming(i) + " ";
         }
         return res;
     }

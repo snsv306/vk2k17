@@ -3,13 +3,14 @@ package factchecking;
 import factchecking.news.HttpHelper;
 import factchecking.news.YaNews;
 import factchecking.textprocessing.*;
+import factchecking.comparator.Comparator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class FactChecking {
-    public Integer api(String src, String externalLink) {
+    public double api(String src, String link) {
         //Create list for requests to news.ya
         List<String> requestToYa = new ArrayList<>();
 
@@ -17,9 +18,9 @@ public class FactChecking {
         YaNews ya = new YaNews();
         List<String> responseFromYa = new ArrayList<>();
 
-        if (!externalLink.isEmpty()) {
+        if (!link.isEmpty()) {
             try {
-                String title = HttpHelper.getTitleOnPage(externalLink);
+                String title = HttpHelper.getTitleOnPage(link);
                 requestToYa.add(title);
                 responseFromYa = ya.getNewsTexts(requestToYa);
             } catch (Exception err) {}
@@ -43,10 +44,7 @@ public class FactChecking {
         List<String> responseFromYaAfterStemming = normalizer.normalizeList(responseFromYa);
 
         //Comparator
-
-        return 0;//Return result (double)
+        Comparator cmp = new Comparator();
+        return cmp.compareNews(requestAfterStem, responseFromYaAfterStemming);
     }
-
-    //Delete trash and transform words to normal form
-
 }
