@@ -2,11 +2,12 @@ package test.factchecking;
 
 import factchecking.news.YaNews;
 
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
 class Test {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws URISyntaxException {
         YaNews ya = new YaNews();
         List<String> arr = new ArrayList<>();
         arr.add("Квартиру дочери Собянина арестовали за долги");
