@@ -1,8 +1,8 @@
-package snsv.hackathon.factchecking;
+package factchecking;
 
-import snsv.hackathon.factchecking.news.HttpHelper;
-import snsv.hackathon.factchecking.news.YaNews;
-import snsv.hackathon.factchecking.textprocessing.*;
+import factchecking.news.HttpHelper;
+import factchecking.news.YaNews;
+import factchecking.textprocessing.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,5 +1,6 @@
 package snsv.hackathon.spring.application;
 
+import factchecking.FactChecking;
 import snsv.hackathon.spring.entity.UIResponse;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,6 +21,7 @@ public class Main {
   @RequestMapping(value = "/", method = RequestMethod.GET)
   @ResponseBody
   public UIResponse myServlet(@RequestParam("link") String link, @RequestParam("text") String text) {
+    FactChecking fc = new FactChecking();
     return new UIResponse(link, text);
   }
 }

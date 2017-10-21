@@ -1,14 +1,14 @@
 package test.factchecking;
 
-import java.util.ArrayList;
+import factchecking.FactChecking;
+import factchecking.news.YaNews;
 
-import snsv.hackathon.factchecking.news.YaNews;
+import java.util.ArrayList;
+import java.util.List;
 
 class Test {
     public static void main(String[] args) throws Exception {
-        YaNews ya = new YaNews();
-        ArrayList<String> arr = new ArrayList<String>();
-        arr.add("Квартиру дочери Собянина арестовали за долги");
-        System.out.println(ya.getNewsTexts(arr));
+        FactChecking fc = new FactChecking();
+        System.out.println(fc.api("Квартиру дочери Собянина арестовали за долги", "http://news.lenta.ch/lQSK"));
     }
 }

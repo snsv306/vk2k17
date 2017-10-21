@@ -1,4 +1,4 @@
-package snsv.hackathon.factchecking.textprocessing;
+package factchecking.textprocessing;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
