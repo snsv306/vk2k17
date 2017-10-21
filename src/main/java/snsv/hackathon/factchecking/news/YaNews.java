@@ -1,21 +1,22 @@
-package factchecking.news;
+package snsv.hackathon.factchecking.news;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import factchecking.news.getter.YaGetter;
-import factchecking.news.aggregator.YaAggregator;
+import snsv.hackathon.factchecking.news.getter.YaGetter;
+import snsv.hackathon.factchecking.news.aggregator.YaAggregator;
 
 public class YaNews implements INews {
     public YaNews() {
     }
 
-    public ArrayList<String> getNewsTexts(ArrayList<String> queryTexts) {
-        ArrayList<String> result = new ArrayList<String>();
+    public List<String> getNewsTexts(List<String> queryTexts) {
+        List<String> result = new ArrayList<String>();
         for (String query : queryTexts) {
             YaAggregator yaA = new YaAggregator(query);
             yaA.getLinks(); // костыль
             YaGetter yaG = new YaGetter(yaA.getUrlWithLinks());
-            ArrayList<String> texts = yaG.getTexts();
+            List<String> texts = yaG.getTexts();
             if (texts.size() > 0) {
                 result = texts;
             }

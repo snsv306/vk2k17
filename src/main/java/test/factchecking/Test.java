@@ -2,7 +2,7 @@ package test.factchecking;
 
 import java.util.ArrayList;
 
-import factchecking.news.YaNews;
+import snsv.hackathon.factchecking.news.YaNews;
 
 class Test {
     public static void main(String[] args) throws Exception {
