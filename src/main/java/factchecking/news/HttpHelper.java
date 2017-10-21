@@ -1,4 +1,4 @@
-package snsv.hackathon.factchecking.news;
+package factchecking.news;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

@@ -1,43 +1,44 @@
-package snsv.hackathon.factchecking.news.aggregator;
+package factchecking.news.extractor;
+
+import factchecking.news.HttpHelper;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import snsv.hackathon.factchecking.news.HttpHelper;
-
 /**
- * YaAggregator
+ * YandexNewsLinkExtractor
  */
-public class YaAggregator implements IAggregator {
+public class YandexNewsLinkExtractor implements ILinkExtractor {
     private final String YANDEX_URL = "http://news.yandex.ru/";
     private String query;
-    private String urlWithLinks;
+    private List<String> links;
 
-    public String getUrlWithLinks() {
-        return this.urlWithLinks;
-    }
-
-    public YaAggregator(String query) {
+    public YandexNewsLinkExtractor(String query) {
         this.query = query;
     }
 
     public List<String> getLinks() {
-        List<String> result = new ArrayList<String>();
+        if (links == null) {
+            initLinks();
+        }
+        return links;
+    }
+
+    private void initLinks() {
+        links = new ArrayList<String>();
         try {
             String url = makeFindStoryUrl(this.query);
             url = findStory(url);
             url = findSources(url);
-            this.urlWithLinks = url;
-            result = findLinks(url);
+            links = findLinks(url);
         } catch (Exception err) {
+            System.out.println("Error while fetch data from " + this.query);
             err.printStackTrace();
         }
-        return result;
     }
 
     //for phase 1
@@ -61,10 +62,10 @@ public class YaAggregator implements IAggregator {
     }
 
     //phase 3 поиск ссылок на другие новостные ресурсы
-    private List<String> findLinks(final String url) throws Exception {
+    private ArrayList<String> findLinks(final String url) throws Exception {
         Document doc = HttpHelper.getDocumentByUrl(url);
         Elements elems = doc.select("h2.doc__title a");
-        List<String> links = new ArrayList<String>();
+        ArrayList<String> links = new ArrayList<String>();
         for (Element elem : elems) {
             links.add(elem.attr("abs:href"));
         }

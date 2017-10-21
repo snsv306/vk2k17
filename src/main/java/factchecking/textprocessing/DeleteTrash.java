@@ -1,4 +1,4 @@
-package FormatString;
+package factchecking.textprocessing;
 
 import java.util.Arrays;
 
