@@ -1,42 +1,43 @@
-package factchecking.news.aggregator;
+package factchecking.news.extractor;
 
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-
+import factchecking.news.HttpHelper;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import factchecking.news.HttpHelper;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * YaAggregator
+ * YandexNewsLinkExtractor
  */
-public class YaAggregator implements IAggregator {
+public class YandexNewsLinkExtractor implements ILinkExtractor {
     private final String YANDEX_URL = "http://news.yandex.ru/";
     private String query;
-    private String urlWithLinks;
+    private List<String> links;
 
-    public String getUrlWithLinks() {
-        return this.urlWithLinks;
-    }
-
-    public YaAggregator(String query) {
+    public YandexNewsLinkExtractor(String query) {
         this.query = query;
     }
 
-    public ArrayList<String> getLinks() {
-        ArrayList<String> result = new ArrayList<String>();
+    public List<String> getLinks() {
+        if (links == null) {
+            initLinks();
+        }
+        return links;
+    }
+
+    private void initLinks() {
+        links = new ArrayList<String>();
         try {
             String url = makeFindStoryUrl(this.query);
             url = findStory(url);
             url = findSources(url);
-            this.urlWithLinks = url;
-            result = findLinks(url);
+            links = findLinks(url);
         } catch (Exception err) {
             err.printStackTrace();
         }
-        return result;
     }
 
     //for phase 1

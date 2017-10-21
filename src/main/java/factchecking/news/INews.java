@@ -1,7 +1,9 @@
 package factchecking.news;
 
-import java.util.ArrayList;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.List;
 
 public interface INews {
-    public ArrayList<String> getNewsTexts(ArrayList<String> queryTexts);
+    List<String> getNewsTexts(List<String> queryTexts) throws URISyntaxException, IOException;
 }
