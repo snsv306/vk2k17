@@ -1,6 +1,7 @@
 package factchecking.news;
 
 import java.util.ArrayList;
+
 import factchecking.news.getter.YaGetter;
 
 public class YaNews implements INews {
@@ -8,7 +9,14 @@ public class YaNews implements INews {
     }
 
     public ArrayList<String> getNewsTexts(ArrayList<String> queryTexts) {
-        YaGetter ya = new YaGetter(queryTexts.get(0));
-        return ya.getTexts();
+        ArrayList<String> result = new ArrayList<String>();
+        for (String query : queryTexts) {
+            YaGetter ya = new YaGetter(query);
+            ArrayList<String> texts = ya.getTexts();
+            if (texts.size() > 0) {
+                result = ya.getTexts();
+            }
+        }
+        return result;
     }
 }

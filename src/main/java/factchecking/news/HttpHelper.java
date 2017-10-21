@@ -8,7 +8,7 @@ import java.nio.charset.StandardCharsets;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-class HttpHelper {
+public class HttpHelper {
     public static Document getDocumentByUrl(final String url) throws IOException {
         return Jsoup.connect(url).userAgent("Chrome").get();
     }
