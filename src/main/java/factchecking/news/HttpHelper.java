@@ -10,7 +10,7 @@ import org.jsoup.nodes.Document;
 
 public class HttpHelper {
     public static Document getDocumentByUrl(final String url) throws IOException {
-        return Jsoup.connect(url).userAgent("Chrome").get();
+        return Jsoup.connect(url).validateTLSCertificates(false).userAgent("Chrome").get();
     }
 
     public static String encodeValue(String value) throws UnsupportedEncodingException {
