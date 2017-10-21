@@ -1,5 +1,8 @@
 package com.example;
 
+import org.apache.lucene.morphology.russian.RussianAnalyzer;
+import org.apache.lucene.morphology.english.EnglishAnalyzer;
+
 import java.io.IOException;
 import java.io.InterruptedIOException;
 
@@ -44,5 +47,8 @@ public class Check {
         String dst3 = new IdentifyPartOfSpeech().deleteAdjective(dst2);
         System.out.println(dst2);
         System.out.println(dst3);
+
+        RussianAnalyzer russian = new RussianAnalyzer();
+        EnglishAnalyzer english = new EnglishAnalyzer();
     }
 }
