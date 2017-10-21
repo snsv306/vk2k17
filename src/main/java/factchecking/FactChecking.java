@@ -4,6 +4,7 @@ import factchecking.news.HttpHelper;
 import factchecking.news.YaNews;
 import factchecking.textprocessing.*;
 import factchecking.comparator.Comparator;
+import factchecking.comparator.CosineComparator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,6 +46,7 @@ public class FactChecking {
 
         //Comparator
         Comparator cmp = new Comparator();
+//        CosineComparator cmp = new CosineComparator();
         return cmp.compareNews(requestAfterStem, responseFromYaAfterStemming);
     }
 }
