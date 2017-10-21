@@ -1,7 +1,10 @@
 package com.example;
 
+import java.io.IOException;
+import java.io.InterruptedIOException;
+
 public class Check {
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException, InterruptedException{
         String src = "На православном форуме в Краснодаре: рассказали об опасностях интернета. \n" +
                 "\n" +
                 "Там немного ад\n";
@@ -16,8 +19,7 @@ public class Check {
         for (String i: src2.split(" ")){
             src1 += new Stemmer().stemming(i) + " ";
         }
-        System.out.println(src1);
-        //String dst1 = new Stemmer().stemming(dest);
+
         String dst1 = "";
         for (String i: dst2.split(" ")){
             dst1 += new Stemmer().stemming(i) + " ";
@@ -25,9 +27,11 @@ public class Check {
 
         double res = new CosineComparator().compareNews(src1, dst1);
 
-        System.out.println(res);
-        System.out.println(src1);
-        System.out.println(dst1);
+        System.out.println("Compare result = " + res);
+
+        String tres = new PullRequestYaNews().pullRequestYaNews("хрень");
+
+        System.out.println(tres);
 
     }
 }
