@@ -23,9 +23,9 @@ public class Check {
             dst1 += new Stemmer().stemming(i) + " ";
         }
 
-        double res = new CosineComparator().compareNews(src1, dst1);
+//        double res = new CosineComparator().compareNews(src1, dst1);
 
-        System.out.println(res);
+//        System.out.println(res);
         System.out.println(src1);
         System.out.println(dst1);
 
