@@ -1,4 +1,4 @@
-package factchecking.news.getter;
+package factchecking.news;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

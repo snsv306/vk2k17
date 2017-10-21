@@ -24,8 +24,7 @@ public class YaGetter implements IGetter {
         return result;
     }
 
-    
-    //phase 3 вырезаем текст из страницы
+    //вырезаем текст из страницы
     private ArrayList<String> findTexts(final String url) throws Exception {
         Document doc = HttpHelper.getDocumentByUrl(url);
         Elements elems = doc.select(".doc__text");

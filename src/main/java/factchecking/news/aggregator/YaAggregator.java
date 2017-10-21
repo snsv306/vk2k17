@@ -18,7 +18,7 @@ public class YaAggregator implements IAggregator {
     private String urlWithLinks;
 
     public String getUrlWithLinks() {
-        
+        return this.urlWithLinks;
     }
 
     public YaAggregator(String query) {
@@ -31,6 +31,7 @@ public class YaAggregator implements IAggregator {
             String url = makeFindStoryUrl(this.query);
             url = findStory(url);
             url = findSources(url);
+            this.urlWithLinks = url;
             result = findLinks(url);
         } catch (Exception err) {
             err.printStackTrace();
@@ -58,6 +59,7 @@ public class YaAggregator implements IAggregator {
         return link.attr("abs:href");
     }
 
+    //phase 3 поиск ссылок на другие новостные ресурсы
     private ArrayList<String> findLinks(final String url) throws Exception {
         Document doc = HttpHelper.getDocumentByUrl(url);
         Elements elems = doc.select("h2.doc__title a");
