@@ -18,8 +18,8 @@ public class Main {
 
   @RequestMapping(value = "/", method = RequestMethod.GET)
   @ResponseBody
-  public UIResponse myServlet(@RequestParam("link") String link, @RequestParam("text") String text) {
-    FactChecking fc = new FactChecking();
-    return new UIResponse(link, text);
+  public UIResponse myServlet(@RequestParam("link") String externalLink, @RequestParam("text") String text) {
+    double result = new FactChecking().api(text, externalLink);
+    return new UIResponse(String.valueOf(result));
   }
 }
