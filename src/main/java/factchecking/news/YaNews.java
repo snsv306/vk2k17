@@ -15,6 +15,7 @@ public class YaNews implements INews {
             List<String> links = new YandexNewsLinkExtractor(query).getLinks();
             List<String> news = new NewsTextExtractor().getNews(links);
             if (news.size() > 0) {
+                System.out.println("Success query : "  + query);
                 result = news;
                 break;
             }

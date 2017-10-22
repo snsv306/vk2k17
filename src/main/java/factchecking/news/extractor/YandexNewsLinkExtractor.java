@@ -7,6 +7,7 @@ import org.jsoup.select.Elements;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -38,8 +39,14 @@ public class YandexNewsLinkExtractor implements ILinkExtractor {
             url = findSources(url);
             links = findLinks(url);
         } catch (Exception err) {
-            System.out.println("Error while fetch data from " + this.query);
-            err.printStackTrace();
+//            System.out.println("Error while fetch data from " + this.query);
+            final int stElemsLength = 3;
+            StackTraceElement[] stElems = Arrays.copyOfRange(err.getStackTrace(), 0, stElemsLength);
+            String res = "Failed query : " + this.query;
+            for (int i = 0; i < stElemsLength; i++) {
+                res += ("\n" + stElems[i]);
+            }
+            System.err.println(res);
         }
     }
 
