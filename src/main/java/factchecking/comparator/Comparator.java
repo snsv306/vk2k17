@@ -13,7 +13,7 @@ public class Comparator {
     }
     public double compareNews(String src, List<String> dst) {
         if (dst.size() <= 3)
-            return -1;
+            return 0;
         String[] arr = this.removeDuplicates(src);
         double[] count = new double[arr.length];
         for (String article : dst) {
@@ -22,7 +22,7 @@ public class Comparator {
                     count[i] += 1;
             }
         }
-        System.out.println(src);
+//        System.out.println(src);
         return Arrays.stream(count).map(x -> (x / dst.size())).sum() / arr.length;
     }
 }

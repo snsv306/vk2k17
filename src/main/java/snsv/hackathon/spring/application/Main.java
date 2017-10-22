@@ -1,16 +1,14 @@
 package snsv.hackathon.spring.application;
 
 import factchecking.FactChecking;
+import org.springframework.web.bind.annotation.*;
 import snsv.hackathon.spring.entity.UIResponse;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@CrossOrigin
 @SpringBootApplication
 public class Main {
 
@@ -20,8 +18,8 @@ public class Main {
 
   @RequestMapping(value = "/", method = RequestMethod.GET)
   @ResponseBody
-  public UIResponse myServlet(@RequestParam("link") String link, @RequestParam("text") String text) {
-    FactChecking fc = new FactChecking();
-    return new UIResponse(link, text);
+  public UIResponse myServlet(@RequestParam("externalLink") String externalLink, @RequestParam("text") String text) {
+    double result = new FactChecking().api(text, externalLink);
+    return new UIResponse(String.valueOf(result));
   }
 }
