@@ -21,7 +21,7 @@ public class FactChecking {
 
         if (!link.isEmpty()) {
             try {
-                String title = HttpHelper.getTitleOnPage(link);
+                String title = new HttpHelper().getTitleOnPage(link);
                 requestToYa.add(title);
                 responseFromYa = ya.getNewsTexts(requestToYa);
             } catch (Exception err) {}

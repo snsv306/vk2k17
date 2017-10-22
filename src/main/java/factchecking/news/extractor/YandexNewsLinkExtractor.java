@@ -15,10 +15,12 @@ import java.util.List;
 public class YandexNewsLinkExtractor implements ILinkExtractor {
     private final String YANDEX_URL = "http://news.yandex.ru/";
     private String query;
+    private HttpHelper pageGetter;
     private List<String> links;
 
     public YandexNewsLinkExtractor(String query) {
         this.query = query;
+        this.pageGetter = new HttpHelper();
     }
 
     public List<String> getLinks() {
@@ -49,21 +51,21 @@ public class YandexNewsLinkExtractor implements ILinkExtractor {
 
     //phase 1 поиск ссылки на странице с поиском
     private String findStory(final String url) throws Exception {
-        Document doc = HttpHelper.getDocumentByUrl(url);
+        Document doc = pageGetter.getDocumentByUrlOnYandex(url);
         Element link = doc.select(".story-item .title a").first();
-        return link.attr("abs:href");
+        return link.attr(   "abs:href");
     }
 
     //phase 2 поиск ссылки 'Источники - ...'
     private String findSources(final String url) throws Exception {
-        Document doc = HttpHelper.getDocumentByUrl(url);
+        Document doc = pageGetter.getDocumentByUrlOnYandex(url);
         Element link = doc.select(".story__total").first();
         return link.attr("abs:href");
     }
 
     //phase 3 поиск ссылок на другие новостные ресурсы
     private ArrayList<String> findLinks(final String url) throws Exception {
-        Document doc = HttpHelper.getDocumentByUrl(url);
+        Document doc = pageGetter.getDocumentByUrlOnYandex(url);
         Elements elems = doc.select("h2.doc__title a");
         ArrayList<String> links = new ArrayList<String>();
         for (Element elem : elems) {

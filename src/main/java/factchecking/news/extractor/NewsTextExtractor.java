@@ -25,7 +25,7 @@ public class NewsTextExtractor {
                 String selector = domains.get(host);
                 Document doc;
                 try {
-                    doc = HttpHelper.getDocumentByUrl(link);
+                    doc = new HttpHelper().getDocumentByUrl(link);
                 } catch (IOException e) {
                     continue;
                 }
